@@ -148,12 +148,13 @@ namespace SodaMachineTask
             int OrangeSodaCost = 35;
             int MeatSodaCost = 6;
             int UserCoins;
+            UserCoins = GetUserCoinTotal(customer);
             Console.WriteLine("Choose soda flavor: 'G' for Grape  (60 cents)");
             Console.WriteLine("Choose soda flavor: 'O' for Orange (35 cents)");
             Console.WriteLine("Choose soda flavor: 'M' for Meat flavor (6 cents)");
             Console.WriteLine("Choose 'E' to go back and Exit.");
             string userSodaChoice = Console.ReadLine();
-            UserCoins = GetUserCoinTotal(customer);
+            
             switch (userSodaChoice)
             {
                 case "G":
@@ -165,6 +166,8 @@ namespace SodaMachineTask
                             //should make the below a seperate method, and do the try catch in that.
                             machineGrapeCans.RemoveAt(0);
                             customer.customerCans.Add(machineGrapeCans[0]);
+                            UserCoins -= GrapeSodaCost;
+                            Console.WriteLine("You now have " + UserCoins + " cents.");
                             Vend(customer);
                         }
                         catch
@@ -178,6 +181,8 @@ namespace SodaMachineTask
                             Console.WriteLine("Grape Soda dispensing with customer change.");
                             customer.customerCans.Add(machineGrapeCans[0]);
                             machineGrapeCans.RemoveAt(0);
+                            UserCoins -= GrapeSodaCost;
+                            Console.WriteLine("You now have " + UserCoins + " cents.");
                             Vend(customer);
                         }
                         catch
@@ -197,6 +202,8 @@ namespace SodaMachineTask
                             Console.WriteLine("Orange Soda dispensing.");
                             machineOrangeCans.RemoveAt(0);
                             customer.customerCans.Add(machineOrangeCans[0]);
+                            UserCoins -= GrapeSodaCost;
+                            Console.WriteLine("You now have " + UserCoins + " cents.");
                             Vend(customer);
                         }
                         catch
@@ -210,6 +217,8 @@ namespace SodaMachineTask
                             Console.WriteLine("Orange Soda dispensing with customer change.");
                             machineOrangeCans.RemoveAt(0);
                             customer.customerCans.Add(machineOrangeCans[0]);
+                            UserCoins -= GrapeSodaCost;
+                            Console.WriteLine("You now have " + UserCoins + " cents.");
                             Vend(customer);
                         }
                         catch
@@ -229,6 +238,8 @@ namespace SodaMachineTask
                             Console.WriteLine("Meat Soda dispensing.");
                             machineMeatCans.RemoveAt(0);
                             customer.customerCans.Add(machineMeatCans[0]);
+                            UserCoins -= GrapeSodaCost;
+                            Console.WriteLine("You now have " + UserCoins + " cents.");
                             Vend(customer);
                         }
                         catch
@@ -242,6 +253,8 @@ namespace SodaMachineTask
                             Console.WriteLine("Meat Soda dispensing with customer change.");
                             machineMeatCans.RemoveAt(0);
                             customer.customerCans.Add(machineMeatCans[0]);
+                            UserCoins -= GrapeSodaCost;
+                            Console.WriteLine("You now have " + UserCoins + " cents.");
                             Vend(customer);
                         }
                         catch
