@@ -58,23 +58,30 @@ namespace SodaMachineTask
                 machineCoins.Add(new Penny(1));
             }
         }
+
+        public string GetUserCoinEntry()
+        {
+            Console.WriteLine("Enter 'P' to insert a Penny");
+            Console.WriteLine("Enter 'N' to insert a Nickel");
+            Console.WriteLine("Enter 'D' to insert a Dime");
+            Console.WriteLine("Enter 'Q' to insert a Quarter");
+            Console.WriteLine("Enter 'F' to finish inserting coins and choose soda flavor.");
+            Console.WriteLine("Enter 'E' to Exit.");
+            string userCoinEntry = Console.ReadLine();
+            return userCoinEntry;
+        }
         public void GetUserCoins(Customer customer)
         {
             string userCoinEntry = "";
             while (userCoinEntry != "E")
             {
-                Console.WriteLine("Enter 'P' to insert a Penny");
-                Console.WriteLine("Enter 'N' to insert a Nickel");
-                Console.WriteLine("Enter 'D' to insert a Dime");
-                Console.WriteLine("Enter 'Q' to insert a Quarter");
-                Console.WriteLine("Enter 'F' to finish inserting coins and choose soda flavor.");
-                Console.WriteLine("Enter 'E' to Exit.");
-                userCoinEntry = Console.ReadLine();
+                userCoinEntry = GetUserCoinEntry();
                 Console.Clear();
                 switch (userCoinEntry)
                 {
                     case "P":
-                        try {
+                        try
+                        {
                             Console.WriteLine("How many pennies do you want to enter?");
                             string enteredNumberOfPennies = Console.ReadLine();
                             for (int i = 0; i <= int.Parse(enteredNumberOfPennies); i++)
@@ -88,7 +95,8 @@ namespace SodaMachineTask
                         }
                         break;
                     case "N":
-                        try {
+                        try
+                        {
                             Console.WriteLine("How many nickels do you want to enter?");
                             string enteredNumberOfNickels = Console.ReadLine();
                             for (int i = 0; i <= int.Parse(enteredNumberOfNickels); i++)
@@ -102,7 +110,8 @@ namespace SodaMachineTask
                         }
                         break;
                     case "D":
-                        try {
+                        try
+                        {
                             Console.WriteLine("How many dimes do you want to enter?");
                             string enteredNumberOfDimes = Console.ReadLine();
                             for (int i = 0; i < int.Parse(enteredNumberOfDimes); i++)
@@ -116,7 +125,8 @@ namespace SodaMachineTask
                         }
                         break;
                     case "Q":
-                        try {
+                        try
+                        {
                             Console.WriteLine("How many quarters do you want to enter?");
                             string enteredNumberOfQuarters = Console.ReadLine();
                             for (int i = 0; i < int.Parse(enteredNumberOfQuarters); i++)
@@ -142,19 +152,25 @@ namespace SodaMachineTask
                 }
             }
         }
+
+        public string GetUserSodaChoice()
+        {
+            Console.WriteLine("Choose soda flavor: 'G' for Grape  (60 cents)");
+            Console.WriteLine("Choose soda flavor: 'O' for Orange (35 cents)");
+            Console.WriteLine("Choose soda flavor: 'M' for Meat flavor (6 cents)");
+            Console.WriteLine("Choose 'E' to go back and Exit.");
+            string userSodaChoice = Console.ReadLine();
+            return userSodaChoice;
+        }
+
         public void Vend(Customer customer)
         {
             int GrapeSodaCost = 65;
             int OrangeSodaCost = 35;
             int MeatSodaCost = 6;
             int UserCoins;
+            string userSodaChoice = GetUserSodaChoice();
             UserCoins = GetUserCoinTotal(customer);
-            Console.WriteLine("Choose soda flavor: 'G' for Grape  (60 cents)");
-            Console.WriteLine("Choose soda flavor: 'O' for Orange (35 cents)");
-            Console.WriteLine("Choose soda flavor: 'M' for Meat flavor (6 cents)");
-            Console.WriteLine("Choose 'E' to go back and Exit.");
-            string userSodaChoice = Console.ReadLine();
-            
             switch (userSodaChoice)
             {
                 case "G":
@@ -162,29 +178,29 @@ namespace SodaMachineTask
                     if (UserCoins == GrapeSodaCost)
                     {
                         try {
-                            Console.WriteLine("Grape Soda dispensing.");
-                            //should make the below a seperate method, and do the try catch in that.
-                            machineGrapeCans.RemoveAt(0);
-                            customer.customerCans.Add(machineGrapeCans[0]);
-                            UserCoins -= GrapeSodaCost;
-                            Console.WriteLine("You now have " + UserCoins + " cents.");
-                            Vend(customer);
+                        Console.WriteLine("Grape Soda dispensing.");
+                        //should make the below a seperate method, and do the try catch in that.
+                        machineGrapeCans.RemoveAt(0);
+                        customer.customerCans.Add(machineGrapeCans[0]);
+                        UserCoins -= GrapeSodaCost;
+                        Console.WriteLine("You now have " + UserCoins + " cents.");
+                        Vend(customer);
                         }
                         catch
                         {
                             Console.WriteLine("Insufficient amount of cans");
                         }
                     }
-                    else if(UserCoins > GrapeSodaCost)
+                    else if (UserCoins > GrapeSodaCost)
                     {
-                        try {
-                            Console.WriteLine("Grape Soda dispensing with customer change.");
-                            customer.customerCans.Add(machineGrapeCans[0]);
-                            machineGrapeCans.RemoveAt(0);
-                            UserCoins -= GrapeSodaCost;
-                            Console.WriteLine("You now have " + UserCoins + " cents.");
-                            Vend(customer);
-                        }
+                       try {
+                        Console.WriteLine("Grape Soda dispensing with customer change.");
+                        customer.customerCans.Add(machineGrapeCans[0]);
+                        machineGrapeCans.RemoveAt(0);
+                        UserCoins -= GrapeSodaCost;
+                        Console.WriteLine("You now have " + UserCoins + " cents.");
+                        Vend(customer);
+                    }
                         catch
                         {
                             Console.WriteLine("Insufficient amount of cans.");
@@ -199,13 +215,13 @@ namespace SodaMachineTask
                     if (UserCoins == OrangeSodaCost)
                     {
                         try {
-                            Console.WriteLine("Orange Soda dispensing.");
-                            machineOrangeCans.RemoveAt(0);
-                            customer.customerCans.Add(machineOrangeCans[0]);
-                            UserCoins -= GrapeSodaCost;
-                            Console.WriteLine("You now have " + UserCoins + " cents.");
-                            Vend(customer);
-                        }
+                        Console.WriteLine("Orange Soda dispensing.");
+                        customer.customerCans.Add(machineOrangeCans[0]);
+                        machineOrangeCans.RemoveAt(0);
+                        UserCoins -= GrapeSodaCost;
+                        Console.WriteLine("You now have " + UserCoins + " cents.");
+                        Vend(customer);
+                    }
                         catch
                         {
                             Console.WriteLine("Insufficient amount of cans.");
@@ -214,13 +230,13 @@ namespace SodaMachineTask
                     else if (UserCoins > OrangeSodaCost)
                     {
                         try {
-                            Console.WriteLine("Orange Soda dispensing with customer change.");
-                            machineOrangeCans.RemoveAt(0);
-                            customer.customerCans.Add(machineOrangeCans[0]);
-                            UserCoins -= GrapeSodaCost;
-                            Console.WriteLine("You now have " + UserCoins + " cents.");
-                            Vend(customer);
-                        }
+                        Console.WriteLine("Orange Soda dispensing with customer change.");
+                        customer.customerCans.Add(machineOrangeCans[0]);
+                        machineOrangeCans.RemoveAt(0);
+                        UserCoins -= GrapeSodaCost;
+                        Console.WriteLine("You now have " + UserCoins + " cents.");
+                        Vend(customer);
+                    }
                         catch
                         {
                             Console.WriteLine("Insufficient amount of cans.");
@@ -235,13 +251,13 @@ namespace SodaMachineTask
                     if (UserCoins == MeatSodaCost)
                     {
                         try {
-                            Console.WriteLine("Meat Soda dispensing.");
-                            machineMeatCans.RemoveAt(0);
-                            customer.customerCans.Add(machineMeatCans[0]);
-                            UserCoins -= GrapeSodaCost;
-                            Console.WriteLine("You now have " + UserCoins + " cents.");
-                            Vend(customer);
-                        }
+                        Console.WriteLine("Meat Soda dispensing.");
+                        customer.customerCans.Add(machineMeatCans[0]);
+                        machineMeatCans.RemoveAt(0);
+                        UserCoins -= GrapeSodaCost;
+                        Console.WriteLine("You now have " + UserCoins + " cents.");
+                        Vend(customer);
+                    }
                         catch
                         {
                             Console.WriteLine("Insufficient amount of cans.");
@@ -250,13 +266,13 @@ namespace SodaMachineTask
                     else if (UserCoins > MeatSodaCost)
                     {
                         try {
-                            Console.WriteLine("Meat Soda dispensing with customer change.");
-                            machineMeatCans.RemoveAt(0);
-                            customer.customerCans.Add(machineMeatCans[0]);
-                            UserCoins -= GrapeSodaCost;
-                            Console.WriteLine("You now have " + UserCoins + " cents.");
-                            Vend(customer);
-                        }
+                        Console.WriteLine("Meat Soda dispensing with customer change.");
+                        customer.customerCans.Add(machineMeatCans[0]);
+                        machineMeatCans.RemoveAt(0);
+                        UserCoins -= GrapeSodaCost;
+                        Console.WriteLine("You now have " + UserCoins + " cents.");
+                        Vend(customer);
+                    }
                         catch
                         {
                             Console.WriteLine("Insufficient amount of cans.");
@@ -284,12 +300,24 @@ namespace SodaMachineTask
             }
             return UserCoinTotal;
         }
-        public void MakeChange(Customer customer, Soda soda)
+        public List<Coin> ChangeInCoins(int ChangeValue)
         {
-            for (int i = 0; i < machineCoins.Count; i++)
-            {
-                
-            }
+            int QuarterValue = 25;
+            int DimeValue = 10;
+            int NickelValue = 5;
+            int PennyValue = 1;
+            int quartersAmount = (int)(ChangeValue / QuarterValue);
+            int dimesAmount = (int)((ChangeValue % QuarterValue) / DimeValue);
+            int nickelsAmount = (int)(((ChangeValue % QuarterValue) % DimeValue) / NickelValue);
+            int penniesAmount = (int)((((ChangeValue % QuarterValue) % DimeValue) % NickelValue) / PennyValue);
+
+            List<Coin> changeCoins = new List<Coin>();
+
+            changeCoins.Add(new Penny(penniesAmount));
+            changeCoins.Add(new Nickel(nickelsAmount));
+            changeCoins.Add(new Dime(dimesAmount));
+            changeCoins.Add(new Quarter(quartersAmount));
+            return changeCoins;
         }
     }
 }

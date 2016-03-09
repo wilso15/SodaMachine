@@ -14,3 +14,9 @@ Cans: Grape-flavored (60¢ per), Orange-flavored (35¢ per), Meat-flavored (6¢ 
 weaknesses:
 properties
 generics
+
+
+		
+
+		
+		

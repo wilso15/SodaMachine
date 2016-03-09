@@ -13,5 +13,9 @@ namespace SodaMachineTask
         {
             this.coinValue = coinValue;
         }
+        public Coin()
+        {
+
+        }
     }
 }
