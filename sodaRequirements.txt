@@ -10,3 +10,7 @@ If exact or too much money is passed in but there isn't sufficient inventory for
 The machine should start with:
 Coins: 20 quarters, 10 dimes, 20 nickels, 50 pennies
 Cans: Grape-flavored (60¢ per), Orange-flavored (35¢ per), Meat-flavored (6¢ per)
+
+weaknesses:
+properties
+generics

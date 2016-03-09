@@ -12,9 +12,9 @@ namespace SodaMachineTask
         {
             SodaMachine sodamachine = new SodaMachine();
             Customer customer = new Customer();
-            sodamachine.AddGrapeSodaToMachine(1);
-            sodamachine.AddOrangeSodaToMachine(1);
-            sodamachine.AddMeatSodaToMachine(1);
+            sodamachine.AddGrapeSodaToMachine(20);
+            sodamachine.AddOrangeSodaToMachine(20);
+            sodamachine.AddMeatSodaToMachine(20);
             sodamachine.AddCoinsToSodaMachine(20, 10, 20, 50);
             sodamachine.GetUserCoins(customer);
             Console.ReadLine();
